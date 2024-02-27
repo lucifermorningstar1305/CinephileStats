@@ -62,7 +62,7 @@ import SelectedMovieDetails from "./components/SelectedMovieDetails";
 const KEY = "637661fd";
 
 const App = () => {
-  const [query, setQuery] = useState("inception");
+  const [query, setQuery] = useState("");
   const [moviesData, setMoviesData] = useState([]);
   const [selectedMovieId, setSelectedMovieId] = useState(null);
   const [watchedMoviesData, setWatchedMoviesData] = useState([]);
@@ -92,7 +92,7 @@ const App = () => {
           setMoviesData(data.Search);
           setError("");
         } catch (err) {
-          console.error(err.message);
+          console.log(err.message);
           if (err.name !== "AbortError") {
             setError(err.message);
           }
@@ -105,6 +105,7 @@ const App = () => {
         setError("");
         return;
       }
+      handleSelectClose();
       fetchMovies();
       return function () {
         controller.abort();

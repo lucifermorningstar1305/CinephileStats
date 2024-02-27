@@ -40,6 +40,22 @@ const SelectedMovieDetails = ({
     onClose();
   };
 
+  useEffect(
+    function () {
+      function callback(e) {
+        if (e.code === "Escape") {
+          onClose();
+        }
+      }
+      document.addEventListener("keydown", callback);
+
+      return function () {
+        document.removeEventListener("keydown", callback);
+      };
+    },
+    [onClose]
+  );
+
   const {
     Title: title,
     Year: year,
