@@ -1,11 +1,17 @@
 import React from "react";
-import Movie from "./Movie";
+import WatchedMovie from "./WatchedMovie";
 
-const WatchedMoviesList = ({ watchedMovies }) => {
+const WatchedMoviesList = ({ watchedMovies, onDelete }) => {
   return (
     <ul className="list">
       {watchedMovies.map((movie) => (
-        <Movie title={movie.Title} poster={movie.Poster} key={movie.imdbID}>
+        <WatchedMovie
+          title={movie.title}
+          poster={movie.poster}
+          key={movie.imdbID}
+          onDelete={onDelete}
+          movieId={movie.imdbID}
+        >
           <p>
             <span>⭐️</span>
             <span>{movie.imdbRating}</span>
@@ -18,7 +24,7 @@ const WatchedMoviesList = ({ watchedMovies }) => {
             <span>⏳</span>
             <span>{movie.runtime} min</span>
           </p>
-        </Movie>
+        </WatchedMovie>
       ))}
     </ul>
   );
